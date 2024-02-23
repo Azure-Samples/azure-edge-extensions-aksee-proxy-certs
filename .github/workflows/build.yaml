@@ -1,0 +1,24 @@
+name: Build PowerShell
+on: 
+  push:
+    branches: 
+      - main
+  
+jobs:
+  lint-pwsh:
+    name: Lint Powershell
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: lint
+      uses: devblackops/github-action-psscriptanalyzer@master
+      with:
+        repoToken: ${{ secrets.GITHUB_TOKEN }}
+        failOnWarnings: false
