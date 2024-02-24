@@ -5,8 +5,7 @@
     -aksEdgeMsiUrl "https://aka.ms/aks-edge/k3s-msi" `
     -InstallDir "C:\Program Files\AksEdge" `
     -VhdxDir "C:\Program Files\AksEdge" `
-    -proxyCertName "Microsoft Root Certificate Authority 2011" `
-    -InstallTools $true
+    -proxyCertName "Microsoft Root Certificate Authority 2011"
 #>
 param(
   # AKS EE MSI URLs are documented here https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-edge-howto-setup-machine#download-aks-edge-essentials
@@ -14,8 +13,7 @@ param(
 
   [String] $InstallDir = "C:\Program Files\AksEdge",
   [String] $VhdxDir = "C:\Program Files\AksEdge",
-  [String] $proxyCertName = "Microsoft Root Certificate Authority 2011",
-  [bool] $InstallTools = $true
+  [String] $proxyCertName = "Microsoft Root Certificate Authority 2011"
 )
 #Requires -RunAsAdministrator
 $ErrorActionPreference = "Stop"
@@ -154,26 +152,6 @@ if (-not ($proxyCertSubject -like "*$proxyCertName*")) {
 }
 else {
   Write-Output "[$(Get-Date -Format t)] INFO: '$proxyCertName' already exists in the AKS EE Linux Node"
-}
-
-# Install tools
-if ($InstallTools) {
-  Write-Output "[$(Get-Date -Format t)] INFO: Installing tools ..."
-
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://community.chocolatey.org/install.ps1"))
-  choco install k9s flux kubernetes-helm git -y
-
-  if (-not (Test-Path "./AKS-Edge")) {
-    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-    refreshenv # To refresh the path so git is available
-    git clone https://github.com/Azure/AKS-Edge.git
-  }
-  else {
-    Write-Output "[$(Get-Date -Format t)] INFO: AKS-Edge repo already exists, skipping clone ..."
-  }
-}
-else {
-  Write-Output "[$(Get-Date -Format t)] INFO: Skipping tools installation ..."
 }
 
 $endTime = Get-Date

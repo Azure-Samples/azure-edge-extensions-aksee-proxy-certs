@@ -1,4 +1,4 @@
-name: Build PowerShell
+name: Build & Test
 on: 
   pull_request:
     branches:
@@ -6,7 +6,7 @@ on:
   
 jobs:
   lint-pwsh:
-    name: Lint Powershell
+    name: Lint PS
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -14,7 +14,7 @@ jobs:
       checks: write
       pull-requests: write
     steps:
-    - name: Checkout code
+    - name: checkout code
       uses: actions/checkout@v3
 
     - name: lint
@@ -32,7 +32,7 @@ jobs:
       checks: write
       pull-requests: write
     steps:
-    - name: Checkout code
+    - name: checkout code
       uses: actions/checkout@v3
 
     - name: test
