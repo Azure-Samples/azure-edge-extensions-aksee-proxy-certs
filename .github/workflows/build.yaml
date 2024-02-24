@@ -21,7 +21,6 @@ jobs:
       uses: devblackops/github-action-psscriptanalyzer@master
       with:
         repoToken: ${{ secrets.GITHUB_TOKEN }}
-        failOnWarnings: false
     
   test-aksee:
     name: Test AKS EE
