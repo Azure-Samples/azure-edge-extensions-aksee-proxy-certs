@@ -20,6 +20,8 @@ This project utilizes PowerShell to achieve the following:
 
 The requirements for the host machine that runs AKS EE can be found [here](https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-edge-system-requirements#hardware-requirements).
 
+The PowerShell script needs to be run with administrative privileges.
+
 ### Installation
 
 ```powershell
@@ -29,6 +31,8 @@ The requirements for the host machine that runs AKS EE can be found [here](https
   -VhdxDir "C:\Program Files\AksEdge" `
   -proxyCertName "Microsoft Root Certificate Authority 2011"
 ```
+
+For demo purposes the script uses a pre-installed CA cert on the Windows host. In prod environments, you should use your own custom proxy root CA cert, which needs to be imported into the Windows host Local Machine Store->Trusted Root Cert Authorities.
 
 >Note: [Additional steps](https://learn.microsoft.com/en-us/cli/azure/use-cli-effectively?tabs=bash%2Cbash2#work-behind-a-proxy) are required if you intend to use Azure CLI on the Windows host, over a proxy server.
 
