@@ -30,6 +30,8 @@ The requirements for the host machine that runs AKS EE can be found [here](https
   -proxyCertName "Microsoft Root Certificate Authority 2011"
 ```
 
+>Note: [Additional steps](https://learn.microsoft.com/en-us/cli/azure/use-cli-effectively?tabs=bash%2Cbash2#work-behind-a-proxy) are required if you intend to use Azure CLI on the Windows host, over a proxy server.
+
 ### Uninstallation
 
 `.\Uninstall-AksEE.ps1`
