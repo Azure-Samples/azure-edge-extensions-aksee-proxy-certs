@@ -23,8 +23,8 @@ jobs:
         useConfigFile: true
     - name: Create git tag
       run: |
-        git tag $GITVERSION_MAJORMINORPATCH
+        git tag ${{ env.GitVersion_MajorMinorPatch }}
       if: github.ref == 'refs/heads/main'
     - name: Push git tag
-      run: git push origin $GITVERSION_MAJORMINORPATCH
+      run: git push origin ${{ env.GitVersion_MajorMinorPatch }}
       if: github.ref == 'refs/heads/main'
