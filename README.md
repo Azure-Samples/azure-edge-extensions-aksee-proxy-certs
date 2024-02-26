@@ -1,6 +1,6 @@
 # AKS Edge Essentials with TLS termination proxy
 
-![Build & Test](https://github.com/azure-samples/azure-edge-extensions-aksee-proxy-certs/actions/workflows/build.yml/badge.svg)
+![Build & Test](https://github.com/azure-samples/azure-edge-extensions-aksee-proxy-certs/actions/workflows/build.yaml/badge.svg)
 
 This repository contains PowerShell script that demonstrates how to provision [AKS Edge Essentials (AKS EE)](https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-edge-overview) single node Linux [k3s](https://k3s.io/) cluster with configuration of a proxy requiring TLS termination.
 
