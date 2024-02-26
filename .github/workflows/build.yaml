@@ -1,0 +1,40 @@
+name: Build & Test
+on: 
+  pull_request:
+    branches:
+      - main
+  
+jobs:
+  lint-pwsh:
+    name: Lint PS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: lint
+      uses: devblackops/github-action-psscriptanalyzer@master
+      with:
+        repoToken: ${{ secrets.GITHUB_TOKEN }}
+    
+  test-aksee:
+    name: Test AKS EE
+    runs-on: windows-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: test
+      run: |
+        pwsh -File ./Install-AksEE.ps1
+        kubectl get pods -A
